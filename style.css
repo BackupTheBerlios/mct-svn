@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+
+div#sidebarlinks {
+    	float: left; 
+    	width: 150px; 
+    	height: 560px;
+    	background: #FFEFD5; 
+    	padding: 15px 10px 15px 20px; 
+    }
+div#sidebarrechts {
+    	float: right; 
+    	width: 160px; 
+    	height: 560px;
+    	background: #FFEFD5; 
+    	padding: 15px 10px 15px 20px; 
+    	}
+div#mitte { 
+    	margin: 0 200px; 
+    	padding: 0 10px; 
+    }
