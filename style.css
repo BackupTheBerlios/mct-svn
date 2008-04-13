@@ -14,7 +14,13 @@ div#sidebarrechts {
     	background: #FFEFD5; 
     	padding: 15px 10px 15px 20px; 
     	}
-div#mitte { 
-    	margin: 0 200px; 
-    	padding: 0 10px; 
+div#mitteoben { 
+		//float : center;
+    	margin: 10px 400px; 
+    	padding: 10px 10px; 
+    }
+div#mitteunten { 
+		//float : center;
+    	margin: 10px 400px; 
+    	padding: 250px 10px; 
     }

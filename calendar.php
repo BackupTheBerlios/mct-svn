@@ -5,23 +5,24 @@
 	//
 	$calendar_script          = "calendar.php"; //The location of this script
 	$calendar_language        = "ger";       //The extension of the calendar language file.
-
+	//mögliche Sprachen "es","fr","ger","it","kr","nl","uk"
+	
 	$content_background_color = "#EEEEEE";   //Background color of the column
 	$content_font_color       = "#000000";   //The font color
-	$content_font_size        = 10;          //Font-size in pixels
+	$content_font_size        = 22;          //Font-size in pixels
 	$content_font_style       = "normal";    //Set to italic or normal
 	$content_font_weight      = "normal";    //Set to bold or normal
 
 	$today_background_color   = "white";   //Background color of the column
 	$today_font_color         = "green";   //The font color
-	$today_font_size          = 10;          //Font-size in pixels
+	$today_font_size          = 22;          //Font-size in pixels
 	$today_font_style         = "normal";    //Set to italic or normal
 	$today_font_weight        = "bold";      //Set to bold or normal
 
 	$event_background_color   = "#DDDDDD";   //Background color of the column
 	$event_background_color2  = "#EEEEEE";   //Background color of the 2nd column (event popup)
 	$event_font_color         = "#000000";   //The font color
-	$event_font_size          = 10;          //Font-size in pixels
+	$event_font_size          = 22;          //Font-size in pixels
 	$event_font_style         = "normal";    //Set to italic or normal
 	$event_font_weight        = "bold";      //Set to bold or normal
   	$event_popup_width        = "250";       //Width  of the popup for the events
@@ -29,14 +30,14 @@
 	
 	$head_background_color    = "#DDDDDD";   //Background color of the column
 	$head_font_color          = "green";   //The font color
-	$head_font_size           = 11;          //Font-size in pixels
+	$head_font_size           = 24;          //Font-size in pixels
 	$head_font_style          = "normal";    //Set to italic or normal
 	$head_font_weight         = "bold";      //Set to bold or normal
 	
-	//darussol: CSS OPTIONS FOR WEEK DAYS
+	//CSS OPTIONS FOR WEEK DAYS
 	$days_head_background_color = "#DDDDDD";   //Background color of the column
 	$days_head_font_color       = "gray";   //The font color
-	$days_head_font_size        = 11;          //Font-size in pixels
+	$days_head_font_size        = 20;          //Font-size in pixels
 	$days_head_font_style       = "normal";    //Set to italic or normal
 	$days_head_font_weight      = "bold";      //Set to bold or normal
 	
