@@ -46,9 +46,7 @@
 	$table_cellpadding        = 2;           //Cellpadding of the table
 	$table_width              = '';          //Table width in pixels or %'s
 	$table_height             = '';          //Table height in pixels or %'s
-	
 	$head_link_color          = "green";    //The color of the link for previous/next month
-	
 	$font_family = "Verdana";
 	
 	/* 17 June 2004 : Check readme.txt for MySQL code for the database table */
@@ -69,9 +67,7 @@
 	$fd             = fopen( $language_file, "r" );             //Open the language file
 	$fd             = fread( $fd, filesize( $language_file ) ); //Read the opened file
 	$language_array = explode( "\n" , $fd );                    //Put file info into array 
-
 	$dayname   = array_slice($language_array,0,7); //The names of the days
-
 	$monthname = array_slice($language_array,7);   //The rest of the language file are the monthnames
 	//
 	/////////////////////////////////////////////
@@ -91,7 +87,6 @@
 	/////////////////////////////////////////////
 
 	$date_string = mktime(0,0,0,$month,1,$year); //The date string we need for some info... saves space ^_^
-
 	$day_start = date("w",$date_string);  //The number of the 1st day of the week
 
 	/////////////////////////////////////////////
@@ -131,14 +126,12 @@
 	//
 	/////////////////////////////////////////////
 
-	// darussol: DEFINITION OF THETRANSLATED MONTH+YEAR TO BE USED IN THE TABLE AND INFO-TITLES (18 May 2004)
-	// e-man   : USING THE VALUES OF THE PREVIOUS AND NEXT MONTH FOR THE TITLE DAY (19 May 2004);
 	$table_caption_prev = $monthname[$previous_month-1] . " " . $year; // previous
 	$table_caption      = $monthname[date("n",$date_string)-1] . " " . $year; // current
-  if ($next_month == 13){
-    $next_month = 1;
-    $year++;
-  }
+  	if ($next_month == 13){
+    	$next_month = 1;
+    	$year++;
+  	}
 	$table_caption_foll = $monthname[$next_month-1] . " " . $year;   // following
 	
 	/////////////////////////////////////////////
@@ -163,7 +156,7 @@
 				font-weight:      " . $head_font_weight . ";
 				font-style:       " . $head_font_style . ";
 			}
-			.cal_days /*darussol*/
+			.cal_days
 			{
 				background-color: " . $days_head_background_color . ";
 				color:            " . $days_head_font_color . ";
@@ -190,7 +183,7 @@
 				font-weight:      " . $today_font_weight . ";
 				font-style:       " . $today_font_style . ";
 			}
- 			.cal_event, a.cal_event /* e-man 17-06-04 */
+ 			.cal_event, a.cal_event
 			{
 				background-color: " . $event_background_color . ";
 				color:            " . $event_font_color . ";
