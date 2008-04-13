@@ -21,7 +21,20 @@
       </div>
       <div id="mitteoben">
       	<? include "calendar.php"; ?>
+      	  <form action="index.php" method="post">
+  			<p>Name:</p> 
+ 		    <input type="text" name="name" value="" size="25" maxlength="25"/>
+ 			<p>Passwort:</p>
+			<input type="password" name="pass" size="15" maxlength="15"/>
+  
+ 			 <input type="submit" name="login" value="Login"/>
+      	
+       	
       </div>
+      
+     
+ 	
+  
       <div id="mitteunten">
       	Wollen sie die Sprache des Kalender ändern ?
       	Hier können Sie das tun 
