@@ -49,8 +49,7 @@
 	$head_link_color          = "green";    //The color of the link for previous/next month
 	$font_family = "Verdana";
 	
-	/* 17 June 2004 : Check readme.txt for MySQL code for the database table */
-
+	
 	$events_from_database     = false;        //Set to true if you want to retrieve events
 	$database                 = "kalender";  //Name of the database within the event_table
   	$server                   = "localhost"; //Name of the server
@@ -64,14 +63,20 @@
 	//Load the language into usable variables
 
 	$language_file  = "Language/calendar." . $calendar_language;	    //Language file into variable
-	$fd             = fopen( $language_file, "r" );             //Open the language file
+	$fd             = fopen( $language_file, "r" );             
 	$fd             = fread( $fd, filesize( $language_file ) ); //Read the opened file
 	$language_array = explode( "\n" , $fd );                    //Put file info into array 
 	$dayname   = array_slice($language_array,0,7); //The names of the days
 	$monthname = array_slice($language_array,7);   //The rest of the language file are the monthnames
-	//
+	
+	//Erklärung zu dem zeugs oben:
+	//fopen(&language_file,"r")  Öffnet die Datei nur zum Lesen und positioniert den Dateizeiger auf den Anfang der Datei.
+	//fread( $fd, filesize( $language_file ) ) auslesen in die variable
+	//explode( "\n" , $fd ); Teilt einen String anhand einer Zeichenkette "/n" ist absatz 
+	//array_slice($language_array,0,7); Extrahiert einen Ausschnitt eines Arrays von x bis y
+	// 0-7 deshalb da die language file  = So/n Mo/n Di/n Mi/n Do/n Fr/n Sa/n ... aufgebaut ist nacher kommen die monatsnamen
+	//array_slice($language_array,7) ab der 8 Stelle Stelle alles
 	/////////////////////////////////////////////
-
 
 	/////////////////////////////////////////////
 	//Use the date to build up the calendar. From the Query_string or the current date
@@ -191,6 +196,15 @@
 				font-size:        " . $event_font_size . ";
 				font-weight:      " . $event_font_weight . ";
 				font-style:       " . $event_font_style . ";
+			}			
+			.cal_dayoff /*das ist ein TEST */
+			{
+				background-color: red;
+				color:            " . $today_font_color . ";
+				font-family:      " . $font_family . ";
+				font-size:        " . $today_font_size . ";
+				font-weight:      " . $today_font_weight . ";
+				font-style:       " . $today_font_style . ";
 			}
 		</style>
   ";
@@ -238,7 +252,6 @@
 	/////////////////////////////////////////////
 	
 	$current_position = $day_start; //The current (column) position of the current day from the loop
-	
 	$total_days_in_month = date("t",$date_string); //The total days in the month for the end of the loop
 
 	/////////////////////////////////////////////
@@ -248,19 +261,28 @@
 	{
 		$class = "cal_content";
 		
-		if( $i == date("j") && $month == date("n") && $year == date("Y") )
-			$class = "cal_today";
-		
-		$current_position++;
-
-    /* e-man : added 07 June 04 */
-    $date_stamp = $year."-".$month."-".sprintf( "%02d",$i);
-    
-		echo "<td align=\"center\" class=\"" . $class . "\">" . $link_start . $i . $link_end . "</td>";
-		if( $current_position == 7 )
+		//TEST wegen FEIERTAG
+		if($i == 1 && $month == 5)
 		{
-			echo "</tr><tr>\n";
-			$current_position = 0;
+			$class = "cal_dayoff";
+			$current_position++;
+			echo "<td align=\"center\" class=\"" . $class . "\">" . $link_start . $i . $link_end . "</td>";
+		}
+		
+		//date("j") liefert Tag des Monats ohne führende Nullen 1 bis 31
+		//date("n")leifert Monatszahl, ohne führende Nullen 1 bis 12
+		//date("Y")	Vierstellige Jahreszahl Beispiel: 1999 oder 2003
+		else{
+			if( $i == date("j") && $month == date("n") && $year == date("Y") )
+				$class = "cal_today";
+				$current_position++;
+    
+				echo "<td align=\"center\" class=\"" . $class . "\">" . $link_start . $i . $link_end . "</td>";
+				if( $current_position == 7 )
+				{
+					echo "</tr><tr>\n";
+					$current_position = 0;
+				}
 		}
 	}
 	//

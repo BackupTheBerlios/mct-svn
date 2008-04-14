@@ -7,35 +7,36 @@
  */
  ?>
  
+ 
  <html>
   <head>
     <title>Multifunktions-Kalender</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <body style="background-color:lightblue"> 
+  <body>
+  <div id="wrapper"> 
       <div id="sidebarlinks">
-		<h1>1999</h1>
+		<h1>Pinter</h1>
+		<h2> Jürgen </h2>
+      	<h4> 4AKDVK </h4>
       </div>
       <div id="sidebarrechts">
-      	<h1>irgendwas</h1>
+      	<h1>Bennersdorfer</h1>
+      	<h2> Dominik </h2>
+      	<h4> 4AKDVK </h4>
       </div>
-      <div id="mitteoben">
+      <div id="mitte">
+      	<p>
       	<? include "calendar.php"; ?>
-      	  <form action="index.php" method="post">
-  			<p>Name:</p> 
- 		    <input type="text" name="name" value="" size="25" maxlength="25"/>
- 			<p>Passwort:</p>
-			<input type="password" name="pass" size="15" maxlength="15"/>
-  
- 			 <input type="submit" name="login" value="Login"/>
-      	
-       	
-      </div>
-      
-     
- 	
-  
-      <div id="mitteunten">
+      	</p>
+      	<p>
+      	<form action="index.php" method="post">
+  	  		Name: <input type="text" name="name" size="20" maxlength="25"/>
+ 			Passwort: <input type="password" name="pass" size="20" maxlength="15"/>
+ 			<br/> 
+   			<input type="submit" name="login" value="Login"/>
+   	  	</form> 	
+   	  	</p>  
       	Wollen sie die Sprache des Kalender ändern ?
       	Hier können Sie das tun 
       	<!-- "es","fr","ger","it","kr","nl","uk" -->
@@ -48,7 +49,8 @@
     		<option value="Spanisch">Spanisch</option>
     		<option value="Koreanisch">Koreanisch</option>
   		</select>
-  
+      </p>
       </div>
+  </div>
   </body>
 </html>
