@@ -40,7 +40,7 @@
       	Wollen sie die Sprache des Kalender ändern ?
       	Hier können Sie das tun 
       	<!-- "es","fr","ger","it","kr","nl","uk" -->
-  		<select name="sprachen" size="5">
+  		<select name="sprachen" size="1">
     		<option value="Deutsch">Deutsch</option>
     		<option value="Englisch">Englisch</option>
     		<option value="Französich">Französich</option>
