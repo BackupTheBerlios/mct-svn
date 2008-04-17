@@ -3,8 +3,17 @@
 	/////////////////////////////////////////////
 	//Declare some variables
 	//
+	
 	$calendar_script          = "calendar.php"; //The location of this script
-	$calendar_language        = "ger";       //The extension of the calendar language file.
+	if(isset($neuSprache))
+	{
+	$calendar_language        = $neuSprache; 
+	}
+	else
+	{
+     //The extension of the calendar language file.
+	$calendar_language        = "ger";	
+	}
 	//mögliche Sprachen "es","fr","ger","it","kr","nl","uk"
 	
 	$content_background_color = "#EEEEEE";   //Background color of the column

@@ -5,6 +5,8 @@
  * To change the template for this generated file go to
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
+ 
+  
  ?>
  
  
@@ -27,7 +29,7 @@
       </div>
       <div id="mitte">
       	<p>
-      	<? include "calendar.php"; ?>
+      	<?php include "calendar.php"; ?>
       	</p>
       	<p>
       	<form action="index.php" method="post">
@@ -37,20 +39,29 @@
    			<input type="submit" name="login" value="Login"/>
    	  	</form> 	
    	  	  </p> 
+      	<?php 
+      		if(isset($_GET[posi]))
+      		{
+      			
+      			$neuSprache = implode($_GET[posi]);	
+      			//echo $neuSprache;
+      		}
+      			
       	
+      	 ?>
   		<form action="index.php" method="get">
   
       	Wollen sie die Sprache des Kalender ändern ?
       	Hier können Sie das tun 
       	<!-- "es","fr","ger","it","kr","nl","uk" -->
-  		<select name="sprachen" size="1">
-    		<option value="Deutsch">Deutsch</option>
-    		<option value="Englisch">Englisch</option>
-    		<option value="Französich">Französich</option>
-    		<option value="Italienisch">Italienisch</option>
-    		<option value="Holländisch">Holländisch</option>
-    		<option value="Spanisch">Spanisch</option>
-    		<option value="Koreanisch">Koreanisch</option>
+  		<select name="posi[]" size="1">
+    		<option value="ger">Deutsch</option>
+    		<option value="uk">Englisch</option>
+    		<option value="fr">Französich</option>
+    		<option value="it">Italienisch</option>
+    		<option value="nl">Holländisch</option>
+    		<option value="es">Spanisch</option>
+    		<option value="kr">Koreanisch</option>
   		</select>
   		<br/>
   		<input type="submit" name="sprache" value="Sprache ändern"/>
