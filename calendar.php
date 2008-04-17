@@ -68,7 +68,25 @@
 	$language_array = explode( "\n" , $fd );                    //Put file info into array 
 	$dayname   = array_slice($language_array,0,7); //The names of the days
 	$monthname = array_slice($language_array,7);   //The rest of the language file are the monthnames
-	
+	$feiertag_file  = "Feiertag/feiertage.txt"; //Festlegen wo das File liegt mit den Feiertagen
+	$fa             = fopen($feiertag_file,"r"); 
+	$fa             = fread( $fa,filesize($feiertag_file)); 
+	$feiertag_array = explode("\n", $fa); // Einlesen aller Zeilen der Datei, trennzeichen ist ein Leerzeichen
+	$tagMonat = array();
+	/*
+	 *  Durchlaufen des $feiertag_array mit hilfe einer foreach-Schleife
+	 *  mit dem Befehl array_push werden die nachfolgende Elemente die in $wert gespeichert werden
+	 *  an das Ende des $tagMonat-Arrays geschreiben. 
+	 *  Durch das explode wird der String beim 'Strichpunkt' getrennt! Mit dem Befehl
+	 *  rtrim werden alle Leerzeichen am Ende des Strings gelöscht!
+	 */
+	foreach ($feiertag_array as $wert)
+	{
+		
+		array_push($tagMonat, explode(";", rtrim($wert)));	
+				
+	}
+		
 	//Erklärung zu dem zeugs oben:
 	//fopen(&language_file,"r")  Öffnet die Datei nur zum Lesen und positioniert den Dateizeiger auf den Anfang der Datei.
 	//fread( $fd, filesize( $language_file ) ) auslesen in die variable
@@ -262,28 +280,52 @@
 		$class = "cal_content";
 		
 		//TEST wegen FEIERTAG
-		if($i == 1 && $month == 5)
-		{
-			$class = "cal_dayoff";
-			$current_position++;
-			echo "<td align=\"center\" class=\"" . $class . "\">" . $link_start . $i . $link_end . "</td>";
-		}
-		
+	
 		//date("j") liefert Tag des Monats ohne führende Nullen 1 bis 31
 		//date("n")leifert Monatszahl, ohne führende Nullen 1 bis 12
 		//date("Y")	Vierstellige Jahreszahl Beispiel: 1999 oder 2003
-		else{
-			if( $i == date("j") && $month == date("n") && $year == date("Y") )
-				$class = "cal_today";
-				$current_position++;
-    
+		//else{
+		if( $i == date("j") && $month == date("n") && $year == date("Y") )
+			$class = "cal_today";
+			$current_position++;
+			$nodayoff = false;  //Variable stellt sicher das wenn ein Feiertag eingezeichnet wird der normale aufbau ausgesetzt wird
+			/*
+			 * Diese For-Schleife durchläuft den Feiertags-Array und trägt den Feiertag
+			 * rot ein!
+			 */
+			for( $arr = 0; $arr < count($tagMonat); $arr++)
+			{
+				
+				
+				if($i == $tagMonat[$arr][0])
+				{ 
+					if($month == $tagMonat[$arr][1]) {
+						
+						$class = "cal_dayoff";
+						echo "<td align=\"center\" class=\"" . $class . "\">" . $link_start . $i . $link_end . "</td>";
+						$class = "cal_today";
+						$nodayoff = true;
+					}
+				}
+				
+			}
+			// ist die Variable false(kein Feiertag eingetragen) wird ganz "normal"
+			// der Kalender weiter aufgebaut!
+			if(!$nodayoff)
+			{
 				echo "<td align=\"center\" class=\"" . $class . "\">" . $link_start . $i . $link_end . "</td>";
 				if( $current_position == 7 )
 				{
 					echo "</tr><tr>\n";
 					$current_position = 0;
 				}
-		}
+			}
+			if( $current_position == 7 )
+			{
+					echo "</tr><tr>\n";
+					$current_position = 0;
+			}
+		
 	}
 	//
 	/////////////////////////////////////////////
