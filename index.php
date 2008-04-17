@@ -36,7 +36,10 @@
  			<br/> 
    			<input type="submit" name="login" value="Login"/>
    	  	</form> 	
-   	  	</p>  
+   	  	  </p> 
+      	
+  		<form action="index.php" method="get">
+  
       	Wollen sie die Sprache des Kalender ändern ?
       	Hier können Sie das tun 
       	<!-- "es","fr","ger","it","kr","nl","uk" -->
@@ -49,8 +52,13 @@
     		<option value="Spanisch">Spanisch</option>
     		<option value="Koreanisch">Koreanisch</option>
   		</select>
+  		<br/>
+  		<input type="submit" name="sprache" value="Sprache ändern"/>
+     
       </p>
       </div>
   </div>
+ 	
+  </form>
   </body>
 </html>
