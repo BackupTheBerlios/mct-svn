@@ -218,11 +218,11 @@
 			.cal_dayoff /*das ist ein TEST */
 			{
 				background-color: red;
-				color:            " . $today_font_color . ";
+				color:            black;
 				font-family:      " . $font_family . ";
-				font-size:        " . $today_font_size . ";
-				font-weight:      " . $today_font_weight . ";
-				font-style:       " . $today_font_style . ";
+				font-size:        " . $days_head_font_size . ";
+				font-weight:      " . $days_head_font_weight . ";
+				font-style:       " . $days_head_font_style. ";
 			}
 		</style>
   ";
