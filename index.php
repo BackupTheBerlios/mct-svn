@@ -5,11 +5,11 @@
  * To change the template for this generated file go to
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
- 
-  
- ?>
- 
- 
+	if(isset($_GET[posi]))
+    {	
+   		$calendar_language = implode($_GET[posi]);	
+   	}
+  ?>
  <html>
   <head>
     <title>Multifunktions-Kalender</title>
@@ -39,19 +39,9 @@
    			<input type="submit" name="login" value="Login"/>
    	  	</form> 	
    	  	  </p> 
-      	<?php 
-      		if(isset($_GET[posi]))
-      		{
-      			
-      			$neuSprache = implode($_GET[posi]);	
-      			//echo $neuSprache;
-      		}
-      			
-      	
-      	 ?>
+   	  	  
   		<form action="index.php" method="get">
-  
-      	Wollen sie die Sprache des Kalender ändern ?
+       	Wollen sie die Sprache des Kalender ändern ?
       	Hier können Sie das tun 
       	<!-- "es","fr","ger","it","kr","nl","uk" -->
   		<select name="posi[]" size="1">
