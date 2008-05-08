@@ -10,24 +10,6 @@
 	$language_array = explode( "\n" , $fd );                    //Put file info into array 
 	$dayname   = array_slice($language_array,0,7); //The names of the days
 	$monthname = array_slice($language_array,7);   //The rest of the language file are the monthnames
-	$feiertag_file  = "Feiertag/feiertage.txt"; //Festlegen wo das File liegt mit den Feiertagen
-	$fa             = fopen($feiertag_file,"r"); 
-	$fa             = fread( $fa,filesize($feiertag_file)); 
-	$feiertag_array = explode("\n", $fa); // Einlesen aller Zeilen der Datei, trennzeichen ist ein Leerzeichen
-	$tagMonat = array();
-	/*
-	 *  Durchlaufen des $feiertag_array mit hilfe einer foreach-Schleife
-	 *  mit dem Befehl array_push werden die nachfolgende Elemente die in $wert gespeichert werden
-	 *  an das Ende des $tagMonat-Arrays geschreiben. 
-	 *  Durch das explode wird der String beim 'Strichpunkt' getrennt! Mit dem Befehl
-	 *  rtrim werden alle Leerzeichen am Ende des Strings gelöscht!
-	 */
-	foreach ($feiertag_array as $wert)
-	{
-		
-		array_push($tagMonat, explode(";", rtrim($wert)));	
-				
-	}
 		
 	//Erklärung zu dem zeugs oben:
 	//fopen(&language_file,"r")  Öffnet die Datei nur zum Lesen und positioniert den Dateizeiger auf den Anfang der Datei.
@@ -51,7 +33,7 @@
 	//
 	/////////////////////////////////////////////
 
-	$date_string = mktime(0,0,0,$month,1,$year); //The date string we need for some info... saves space ^_^
+	$date_string = mktime(0,0,0,$month,1,$year); //The date string we need for some info
 	$day_start = date("w",$date_string);  //The number of the 1st day of the week
 
 	/////////////////////////////////////////////
@@ -98,7 +80,6 @@
     	$year++;
   	}
 	$table_caption_foll = $monthname[$next_month-1] . " " . $year;   // following
-	
 	
 	/////////////////////////////////////////////
 	//CSS-Code einbinden für den Calendar

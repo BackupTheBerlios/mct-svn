@@ -35,4 +35,20 @@ div#wrapper {							/* Zentrierung der ganzen Seite mit einer grösse von 1024 px
 		background-color: lightblue;	/* background-color ist solange lightblue bis was anders definiert wird */
 		width: 1024px;
 		margin: 10px auto;
-	}    
+	}   
+div#userinfo {
+		background-color: #00A0F1;	/* background-color ist solange lightblue bis was anders definiert wird */
+		margin: 10px 10px 10px 10px;    /* Außenabstand */
+	} 
+div#sidebarlinksuser {
+    	float: left; 
+    	width: 200px; 
+    	height: 560px;
+    	background: #FFEFD5; 
+    	padding: 15px 0px 15px 30px;	
+    }
+div#userevents {
+	background-color: #00A0F1;
+	width: 420px; 					/*Definition des Inahltbereiches (Breite) */			
+	height: 150px;
+}

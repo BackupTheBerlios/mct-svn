@@ -10,8 +10,14 @@
 	//Declare some variables
 	//
 	$calendar_script          = "calendar.php"; //The location of this script
-	$calendar_language        = "ger";       //The extension of the calendar language file.
-	//mögliche Sprachen "es","fr","ger","it","kr","nl","uk"
+	if(isset($calendar_language))
+	{
+		$calendar_language;
+	}
+	else{
+		$calendar_language        = "ger";       //The extension of the calendar language file.
+		//mögliche Sprachen "es","fr","ger","it","kr","nl","uk"
+	}
 	
 	$content_background_color = "#EEEEEE";   //Background color of the column
 	$content_font_color       = "#000000";   //The font color
