@@ -5,9 +5,14 @@
  * To change the template for this generated file go to
  * Window - Preferences - PHP-Eclipse - PHP - Code Templates
  */
+ include "session.php";
+ include "functionsClasses.php";
+ 
     if(isset($_GET[posi]))
     {	
    		$calendar_language = implode($_GET[posi]);
+   		session_register("sprache");				 // Passwort in Session speichern
+      	$_SESSION['sprache'] = $calendar_language;   //Sprach file in der Session gespeichert -für Persöhnlichen Kalendar
    	}
  ?>
  <html>
@@ -29,15 +34,10 @@
       </div>
       <div id="mitte">
       	<p>
-      		<div align=center><?php include "calendar.php"; ?></div>
+      		<div align="center"><?php include "calendar.php"; ?></div>
       	</p>
       	<p>
-      	<form action="index.php" method="post">
-  	  		Name: <input type="text" name="name" size="20" maxlength="25"/>
- 			Passwort: <input type="password" name="pass" size="20" maxlength="15"/>
- 			<br/> 
-   			<input type="submit" name="login" value="Login"/>
-   	  	</form> 	
+		<?php include "login.php";	?>	
    	  	</p> 
   		<form action="index.php" method="get">
 	       	Wollen sie die Sprache des Kalender ändern ?
