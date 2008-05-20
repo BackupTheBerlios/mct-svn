@@ -10,7 +10,7 @@
 	$language_array = explode( "\n" , $fd );                    //Put file info into array 
 	$dayname   = array_slice($language_array,0,7); //The names of the days
 	$monthname = array_slice($language_array,7);   //The rest of the language file are the monthnames
-	$name_von_Session = 'pinter';//$_SESSION['username'];
+	$name_von_Session = 'Dominik';//$_SESSION['username'];
 		
 	//Erklärung zu dem zeugs oben:
 	//fopen(&language_file,"r")  Öffnet die Datei nur zum Lesen und positioniert den Dateizeiger auf den Anfang der Datei.
@@ -92,16 +92,17 @@
 	//
 	if (isset ($_GET['show_event'])){
     list ($year, $month, $day) = explode ("-", $_GET['event_date']);
+	  
     $query = "
       SELECT *
       FROM " . $event_table . "
       WHERE EventYear  = '" . $year . "'
       AND   EventMonth = '" . $month . "'
       AND   EventDay   = '" . $day . "'
-      AND   EventBenutzer like '" . $name_von_Session ."'
+      AND   EventBenutzer like '".$name_von_Session."'
       ORDER BY EventTime ASC
     ";
-
+    
     /* connect to the database */
     $database_connection = mysql_connect ($server, $username, $password);
     mysql_select_db ($database, $database_connection);
@@ -184,7 +185,7 @@
 	
 	$current_position = $day_start; //The current (column) position of the current day from the loop
 	$total_days_in_month = date("t",$date_string); //The total days in the month for the end of the loop
-
+	
 	////////////////////////////////////////////
 	//Retrieve events for the current month + year
 	//e-man : added 07 June 04
@@ -194,20 +195,19 @@
     mysql_select_db ($database, $database_connection);
     $result = mysql_query("
       SELECT *
-      FROM " . $event_table . "
+      FROM " . $event_table ."
       WHERE
-        EventYear = '" . $year . "'
+        EventYear = '". $year ."'
       AND
-        EventMonth = '" . $month . "'
+        EventMonth = '". $month ."'
       AND
-      	EventBenutzer like '" .  $name_von_Session  ."'
+      	EventBenutzer like '" . $name_von_Session ."'
     ");
     while ($record = mysql_fetch_assoc($result)){
       $event[$record['EventDay']] = $record;
     }
   }
 	//
-
 
 	/////////////////////////////////////////////
 	//Loop all the days from the month

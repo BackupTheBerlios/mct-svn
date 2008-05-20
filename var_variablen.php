@@ -1,0 +1,3 @@
+<?php
+	$test = "name";   //benutzername
+?>

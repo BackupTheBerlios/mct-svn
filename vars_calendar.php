@@ -9,7 +9,8 @@
 	/////////////////////////////////////////////
 	//Declare some variables
 	//
-	$usercalendar_script          = "usercalendar.php"; //The location of this script
+	$usercalendar_script      = "usercalendar.php"; //The location of this script
+	//$calendar_script          = "calendar.php"; //The location of this script
 	if(isset($calendar_language))
 	{
 		$calendar_language;
@@ -62,7 +63,7 @@
 	$font_family = "Verdana";
 	
 	$events_from_database     = true;        //Set to true if you want to retrieve events
-	$database                 = "kalender";  //Name of the database within the event_table
+	$database                 = "projektdbsys";  //Name of the database within the event_table
   	$server                   = "localhost"; //Name of the server
   	$username                 = "root";  //MySQL username
   	$password                 = "";  //MySQL password

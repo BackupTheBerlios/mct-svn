@@ -7,7 +7,7 @@ body {
 		background-color: #353535;		/* Dunkles Grau im Hex-Code */
 	}
 p{
-	text-align: center;
+	text-align: center;					/* Definition der Textausrichtung in einen Absatz  */
 	}
 table{
 	margin:auto;						/* Firefox Cheat --> Tabell wird zentriert geht sonst nicht */
@@ -19,23 +19,23 @@ div#wrapper {							/* Zentrierung der ganzen Seite mit einer grösse von 1024 px
 	}   
 div#sidebarlinks {
     	float: left; 
-    	width: 200px; 
-    	height: 560px;
-    	background: #FFEFD5; 
-    	padding: 15px 0px 15px 30px;  	 /*Definition des Innenabstandes Oben-Rechts-Unten-Links  */	
+    	width: 200px; 					/* Definition des Inahltbereiches (breite) */
+    	height: 560px;					/* Definition des Inahltbereiches (höhe) */
+    	background: #FFEFD5; 			/* Definition des Hintergrundes  */
+    	padding: 15px 0px 15px 30px;  	/*Definition des Innenabstandes Oben-Rechts-Unten-Links  */	
     }
 div#sidebarrechts {
     	float: right; 
-    	width: 200px; 
-    	height: 560px;
-    	background: #FFEFD5; 
+    	width: 200px; 					/* Definition des Inahltbereiches (breite) */
+    	height: 560px;					/* Definition des Inahltbereiches (höhe) */
+    	background: #FFEFD5; 			/* Definition des Hintergrundes  */
     	padding: 15px 0px 15px 30px;  	/*Definition des Innenabstandes Oben-Rechts-Unten-Links  */
     }
 div#mitte { 
-		text-align: center;
-		width: 550px; 					/*Definition des Inahltbereiches (Breite) */			
-		height: 570px;					/*Definition des Inahltbereiches (Breite) 570 */
- 		margin: 20px 0px 0px 230px;		/*Außenabstand:  Oben Rechts Unten Links*/
+		text-align: center;				/* Definition der Textausrichtung */
+		width: 550px; 					/* Definition des Inahltbereiches (breite) */			
+		height: 570px;					/* Definition des Inahltbereiches (höhe) */
+ 		margin: 20px 0px 0px 230px;		/* Außenabstand:  Oben Rechts Unten Links*/
     	padding: 10px 0px; 
     }
 div#userinfo {
@@ -50,14 +50,15 @@ div#sidebarlinksuser {
     	padding: 15px 0px 15px 30px;	/* Innenabstände */
     }
 div#userevents {
-	background-color: #00A0F1;
-	width: 420px; 					/*Definition des Inahltbereiches (Breite) */			
-	height: 150px;
+	background-color: #00A0F1;		/* Definition der Hintergrund Farbe */
+	width: 420px; 					/* Definition des Inahltbereiches (breite) */			
+	height: 150px;					/* Definition des Inahltbereiches (höhe) 570 */
+	margin: 15px 0px 0px 75px;		/* Außenabstand */
 	}
 div#bottombox {
 	background-color: #ACDFE6;
-	width: 570px; 					/*Definition des Inahltbereiches (Breite) */			
-	height: auto;
-	margin: 209px 0px 0px 0px;
-	padding: 2px 0px;
+	width: 570px; 					/* Definition des Inahltbereiches (breite) */			
+	height: auto;					/* Definition des Inahltbereiches (höhe) */
+	margin: 209px 0px 0px 0px;		/* Außenabstand */
+	padding: 2px 0px;				/* Innenabstände */
 	}

@@ -1,11 +1,9 @@
 <?php
   // functionsClasses.php
-
+  include "var_variablen.php";
   // ----------------------------------------------------------
   // Ist der Benutzer bereits angemeldet? 
   // ----------------------------------------------------------
-  
-  
   function IsLoggedIn() {  //function deklariert nur wird aber nicht ausgef¸hrt
     if (isset($_SESSION["username"]) and isset($_SESSION["userpass"]) //isset schaut nach ob "username" vorhanden ist
          and $_SESSION["username"] !="" ) { //$_SESSION ist ein Systemarray
@@ -37,7 +35,7 @@
    */
   function UserDBConnect() {
     $con= mysql_connect('localhost','root','') or die(mysql_error()); //benutzer und passwort
-    mysql_select_db('kalender',$con) or die(mysql_error()); //datenbankname selektieren
+    mysql_select_db('projektdbsys',$con) or die(mysql_error()); //datenbankname selektieren
 }
 
 /**
@@ -46,6 +44,7 @@
  * wenn ja --> true falls nein --> false
  */
 function UserDBCheck_user($name, $pass){
+	$test = $name;
     $sql="SELECT BenutzerName,BenutzerPasswort 
     FROM benutzer".
     " WHERE BenutzerName='".$name."' AND BenutzerPasswort='".$pass."';";
@@ -58,6 +57,39 @@ function UserDBCheck_user($name, $pass){
     else{
 	    return false;    
 	}
+}
+
+function newEvent($beschr,$jahr,$monat,$tag,$zeit){
+
+	//verbindung herstellen
+	$id = getNextEventId;
+	$con= mysql_connect('localhost','root','') or die(mysql_error());
+	if (!$con) {
+  		die('Could not connect: ' . mysql_error());  //Groﬂes Problem :) 
+ 	}
+	mysql_select_db("projektdbsys", $con);
+	mysql_query("INSERT INTO `projektdbsys`.`calendar_events` (`EventId` , `EventBenutzer` , " .
+			"`EventYear` , `EventMonth` , `EventDay` , `EventTime` , `Event`) " .
+			"VALUES ('$id', '$test', '$jahr', '$monat', '$tag', '$zeit', '$beschr');");
+	mysql_close($con);
+	}
+
+function  getNextEventID() {
+	
+	$nextid=0;
+	$con= mysql_connect('localhost','root','') or die(mysql_error());
+	if (!$con) {
+  		die('Could not connect: ' . mysql_error());  //Groﬂes Problem :) 
+ 	}
+ 	mysql_select_db("projektdbsys", $con);
+ 	$result = mysql_query("SELECT MAX( `EventId` ) " .
+ 			"FROM `calendar_events` " .
+ 			"WHERE `EventBenutzer` " .
+ 			"LIKE '$test'" );
+ 	mysql_close($con);
+ 	$nextid = $result;
+ 	$nextid = $nextid+1;
+ 	return $nextid;
 }
 
 function Error() {
@@ -75,22 +107,22 @@ function Error() {
 }	
 
 function inOrdnung($name) {
-		  	 // Das Login-Formular wurde schon submitted, die Logindaten aus dem Formular
+		 // Das Login-Formular wurde schon submitted, die Logindaten aus dem Formular
 	  	 // verifzieren und in der Session speichern
-	    
 	     session_register("username");			//User name in der Session Speichern
 	     $_SESSION['username'] = $name;
 	     $name_von_Session = $_SESSION['username'];
+	     $test = $name_von_Session;
 	     echo "<html>
 				  <head>
-				    <title>Multifunktions-Kalender</title>
+				    <title>Multifunktions-Event-Kalender</title>
 				    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\" />
 				  </head>
 				  <body>
 				  <div id=\"wrapper\"> 
 				      <div id=\"sidebarlinksuser\">
 				      	<div id=\"userinfo\">
-				      	Hallo " , $_SESSION['username'] , " !"  ;
+				      	Hallo $name" ;
 				      echo "</div>
 				      </div>
 				      <div id=\"sidebarrechts\">
@@ -98,16 +130,12 @@ function inOrdnung($name) {
 				      <div id=\"mitte\">
 				      <p>";
 						include "usercalendar.php"; 
-				      echo "
-				      </p>
-				      <div id=\"userevents\">
-				      	Hier kommt eine Eingabemaske hin
-				      </div>
-				  	</div>
-				  </div>
+					      echo "</p>";
+					      include "form_userevent.php";					
+ 				  	echo"</div><!-- mitte >
+				  </div><!-- Wrapper -->
 				  </body>
 				</html>";
-	   
 }	
 
 /**
@@ -143,15 +171,15 @@ function IsMailFree($email){
  */
 function register($name,$pwd,$email)
 {
-//verbindung herstellen
-$con= mysql_connect('localhost','root','') or die(mysql_error());
-if (!$con) {
-  die('Could not connect: ' . mysql_error());  //Groﬂes Problem :) 
- }
-mysql_select_db("projektdbsys", $con);
-mysql_query("INSERT INTO benutzer (BenutzerName, BenutzerPasswort, BenutzerEMail) 
-VALUES ('$name', '$pwd', '$email')");
-mysql_close($con);
+	//verbindung herstellen
+	$con= mysql_connect('localhost','root','') or die(mysql_error());
+	if (!$con) {
+	  die('Could not connect: ' . mysql_error());  //Groﬂes Problem :) 
+	 }
+	mysql_select_db("projektdbsys", $con);
+	mysql_query("INSERT INTO benutzer (BenutzerName, BenutzerPasswort, BenutzerEMail) 
+	VALUES ('$name', '$pwd', '$email')");
+	mysql_close($con);
 }
 
 function sendMail($name,$pwd,$email)
