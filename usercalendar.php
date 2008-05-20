@@ -10,6 +10,7 @@
 	$language_array = explode( "\n" , $fd );                    //Put file info into array 
 	$dayname   = array_slice($language_array,0,7); //The names of the days
 	$monthname = array_slice($language_array,7);   //The rest of the language file are the monthnames
+	$name_von_Session = 'pinter';//$_SESSION['username'];
 		
 	//Erklärung zu dem zeugs oben:
 	//fopen(&language_file,"r")  Öffnet die Datei nur zum Lesen und positioniert den Dateizeiger auf den Anfang der Datei.
@@ -87,6 +88,59 @@
 	include "calendar_css.php";
 	//
 	/////////////////////////////////////////////
+	//show events in popup?
+	//
+	if (isset ($_GET['show_event'])){
+    list ($year, $month, $day) = explode ("-", $_GET['event_date']);
+    $query = "
+      SELECT *
+      FROM " . $event_table . "
+      WHERE EventYear  = '" . $year . "'
+      AND   EventMonth = '" . $month . "'
+      AND   EventDay   = '" . $day . "'
+      AND   EventBenutzer like '" . $name_von_Session ."'
+      ORDER BY EventTime ASC
+    ";
+
+    /* connect to the database */
+    $database_connection = mysql_connect ($server, $username, $password);
+    mysql_select_db ($database, $database_connection);
+    $result = mysql_query ($query) or die(mysql_error());
+
+    /* initize the variabele color_alternated (boolean) */
+    $color_alternated = false;
+
+    /* header of the table */
+    echo "<table width=\"100%\" border=\"" . $table_border . "\" cellpadding=\"" . $table_cellpadding . "\" cellspacing=\"" . $table_cellspacing . "\">";
+
+    $date_string = mktime(0,0,0,$month,$day,$year);
+    $month = sprintf("%01d",$month);
+
+    echo "<tr><td align=\"center\" class=\"cal_head\" colspan=\"2\">".$day." " . $monthname[$month] . " ".$year."</td></tr>";
+
+    /* loop through the results via a mysql_fetch_assoc () */
+    while ($record = mysql_fetch_assoc ($result)){
+      if ($color_alternated){
+        $color_alternated = false;
+        $background_color_row = $event_background_color;
+      }
+      else{
+        $color_alternated = true;
+        $background_color_row = $event_background_color2;
+      }
+      echo "<tr class=\"cal_event\">
+              <td style=\"background-color:".$background_color_row."\" width=\"1\">" . $record['EventTime'] . "</td>
+              <td style=\"background-color:".$background_color_row."\">" . nl2br($record['Event']) . "</td>
+            </tr>";
+    }
+    /* close the table */
+    echo "</table>";
+
+    /* bring an exit so the script will terminate*/
+    exit;
+	}
+	//
+	/////////////////////////////////////////////
 	
 	/////////////////////////////////////////////
 	//Print the calendar table header
@@ -94,7 +148,7 @@
 	echo "
 		<script language=\"javascript\">
       function open_event(date_stamp){
-        window.open(\"" . $calendar_script . "?show_event=true&event_date=\" + date_stamp, \"calendar_popup\",\"height=" . $event_popup_height . ",width=".$event_popup_width."\");
+        window.open(\"" . $usercalendar_script . "?show_event=true&event_date=\" + date_stamp, \"calendar_popup\",\"height=" . $event_popup_height . ",width=".$event_popup_width."\");
       }
 		</script>
 		<table border=\"" . $table_border . "\" cellpadding=\"" . $table_cellpadding . "\" cellspacing=\"" . $table_cellspacing . "\" style=\"height:" . $table_height . "\" width=\"" . $table_width . "\">
@@ -131,6 +185,30 @@
 	$current_position = $day_start; //The current (column) position of the current day from the loop
 	$total_days_in_month = date("t",$date_string); //The total days in the month for the end of the loop
 
+	////////////////////////////////////////////
+	//Retrieve events for the current month + year
+	//e-man : added 07 June 04
+  if ($events_from_database)
+  {
+    $database_connection = mysql_connect ($server, $username, $password);
+    mysql_select_db ($database, $database_connection);
+    $result = mysql_query("
+      SELECT *
+      FROM " . $event_table . "
+      WHERE
+        EventYear = '" . $year . "'
+      AND
+        EventMonth = '" . $month . "'
+      AND
+      	EventBenutzer like '" .  $name_von_Session  ."'
+    ");
+    while ($record = mysql_fetch_assoc($result)){
+      $event[$record['EventDay']] = $record;
+    }
+  }
+	//
+
+
 	/////////////////////////////////////////////
 	//Loop all the days from the month
 	//
@@ -147,45 +225,31 @@
 		if( $i == date("j") && $month == date("n") && $year == date("Y") )
 			$class = "cal_today";
 			$current_position++;
-			$nodayoff = false;  //Variable stellt sicher das wenn ein Feiertag eingezeichnet wird der normale aufbau ausgesetzt wird
-			/*
-			 * Diese For-Schleife durchläuft den Feiertags-Array und trägt den Feiertag
-			 * rot ein!
-			 */
-			for( $arr = 0; $arr < count($tagMonat); $arr++)
-			{
-				
-				
-				if($i == $tagMonat[$arr][0])
-				{ 
-					if($month == $tagMonat[$arr][1]) {
-						
-						$class = "cal_dayoff";
-						echo "<td align=\"center\" class=\"" . $class . "\">" . $link_start . $i . $link_end . "</td>";
-						$class = "cal_today";
-						$nodayoff = true;
-					}
-				}
-				
-			}
-			// ist die Variable false(kein Feiertag eingetragen) wird ganz "normal"
-			// der Kalender weiter aufgebaut!
-			if(!$nodayoff)
-			{
-				echo "<td align=\"center\" class=\"" . $class . "\">" . $link_start . $i . $link_end . "</td>";
-				if( $current_position == 7 )
-				{
-					echo "</tr><tr>\n";
-					$current_position = 0;
-				}
-			}
-			if( $current_position == 7 )
-			{
-					echo "</tr><tr>\n";
-					$current_position = 0;
-			}
+		   /* is there any event on this day? Yes, create a link. No clear the (previous) string */
+		$link_start = "";
+		$link_end   = "";
+
+
+    /* if there is an event do */
+		if( isset($event[$i]) )
+    {
+      $link_start = "<a href=\"javascript:;\" class=\"cal_event\" onclick=\"javascript: open_event('".$year."-".$month."-".$i."');\">";
+      $link_end   = "</a>";
+      $class      = "cal_event";
+    }
+
+    /* for the event filter */
+    /* e-man : added 07 June 04 */
+    $date_stamp = $year."-".$month."-".sprintf( "%02d",$i);
+    
+		echo "<td align=\"center\" class=\"" . $class . "\">" . $link_start . $i . $link_end . "</td>";
+		if( $current_position == 7 )
+		{
+			echo "</tr><tr>\n";
+			$current_position = 0;
+		}
+	}	
 		
-	}
 	//
 	/////////////////////////////////////////////
 	

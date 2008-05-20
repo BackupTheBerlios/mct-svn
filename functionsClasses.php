@@ -4,6 +4,8 @@
   // ----------------------------------------------------------
   // Ist der Benutzer bereits angemeldet? 
   // ----------------------------------------------------------
+  
+  
   function IsLoggedIn() {  //function deklariert nur wird aber nicht ausgeführt
     if (isset($_SESSION["username"]) and isset($_SESSION["userpass"]) //isset schaut nach ob "username" vorhanden ist
          and $_SESSION["username"] !="" ) { //$_SESSION ist ein Systemarray
@@ -35,7 +37,7 @@
    */
   function UserDBConnect() {
     $con= mysql_connect('localhost','root','') or die(mysql_error()); //benutzer und passwort
-    mysql_select_db('projektdbsys',$con) or die(mysql_error()); //datenbankname selektieren
+    mysql_select_db('kalender',$con) or die(mysql_error()); //datenbankname selektieren
 }
 
 /**
@@ -75,8 +77,10 @@ function Error() {
 function inOrdnung($name) {
 		  	 // Das Login-Formular wurde schon submitted, die Logindaten aus dem Formular
 	  	 // verifzieren und in der Session speichern
+	    
 	     session_register("username");			//User name in der Session Speichern
 	     $_SESSION['username'] = $name;
+	     $name_von_Session = $_SESSION['username'];
 	     echo "<html>
 				  <head>
 				    <title>Multifunktions-Kalender</title>
@@ -103,6 +107,7 @@ function inOrdnung($name) {
 				  </div>
 				  </body>
 				</html>";
+	   
 }	
 
 /**

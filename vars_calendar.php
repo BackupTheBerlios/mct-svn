@@ -9,7 +9,7 @@
 	/////////////////////////////////////////////
 	//Declare some variables
 	//
-	$calendar_script          = "calendar.php"; //The location of this script
+	$usercalendar_script          = "usercalendar.php"; //The location of this script
 	if(isset($calendar_language))
 	{
 		$calendar_language;
@@ -61,11 +61,11 @@
 	$head_link_color          = "green";    //The color of the link for previous/next month
 	$font_family = "Verdana";
 	
-	$events_from_database     = false;        //Set to true if you want to retrieve events
+	$events_from_database     = true;        //Set to true if you want to retrieve events
 	$database                 = "kalender";  //Name of the database within the event_table
   	$server                   = "localhost"; //Name of the server
   	$username                 = "root";  //MySQL username
-  	$password                 = "********";  //MySQL password
+  	$password                 = "";  //MySQL password
   	$event_table              = "calendar_events"; //Name of the calendar_events
 	//
 	/////////////////////////////////////////////
