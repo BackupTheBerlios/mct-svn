@@ -116,6 +116,7 @@
         window.open(\"" . $calendar_script . "?show_event=true&event_date=\" + date_stamp, \"calendar_popup\",\"height=" . $event_popup_height . ",width=".$event_popup_width."\");
       }
 		</script>
+		<p>
 		<table border=\"" . $table_border . "\" cellpadding=\"" . $table_cellpadding . "\" cellspacing=\"" . $table_cellspacing . "\" style=\"height:" . $table_height . "\" width=\"" . $table_width . "\">
 			<tr>
 				<td align=\"center\" class=\"cal_head\"><a class=\"cal_head\" href=\"" . $_SERVER['PHP_SELF'] . "?" . $QUERY_STRING . "&amp;date=" .
@@ -218,5 +219,5 @@
 	//
 	/////////////////////////////////////////////
 	
-	echo "</tr></table>";  // Close the table
+	echo "</tr></table></p>";  // Close the table
 ?>

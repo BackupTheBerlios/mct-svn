@@ -1,54 +1,63 @@
 @CHARSET "ISO-8859-1";
-* { padding: 0; margin: 0; } /* alle Abstände innen und Außen auf Null setzten */
-							 /* Bringt laut LittleBoxes-DVD(Video2Brain) vorteile mit sich */
-							 /* Man muss aber auf die eigene Formatierung acht geben da sonst alles */
-							 /* aneinander klebt --> padding = innenAbstand margin = Außenabstand */
+* { 									/* alle Abstände innen und Außen auf Null setzten */
+	padding: 0;							/* Bringt laut LittleBoxes-DVD(Video2Brain) vorteile mit sich */
+    margin: 0; 							/* Man muss aber auf die eigene Formatierung acht geben da sonst alles */
+   } 									/* aneinander klebt --> padding = innenAbstand margin = Außenabstand */					 					 
 body {
 		background-color: #353535;		/* Dunkles Grau im Hex-Code */
 	}
-p {
-	margin: 1em;
-	padding: 1em;
-}
+p{
+	text-align: center;
+	}
+table{
+	margin:auto;						/* Firefox Cheat --> Tabell wird zentriert geht sonst nicht */
+	}
+div#wrapper {							/* Zentrierung der ganzen Seite mit einer grösse von 1024 px */
+		background-color: lightblue;	/* background-color ist solange lightblue bis was anders definiert wird */
+		width: 1024px;					/* zusätzlich wird hiermit erreicht das wenn man die Seite minimiert alles dort */
+		margin: 10px auto;				/* dort bleibt wo es ist --> keine übereinander zerrungen */
+	}   
 div#sidebarlinks {
     	float: left; 
     	width: 200px; 
     	height: 560px;
     	background: #FFEFD5; 
-    	padding: 15px 0px 15px 30px;   /*Definition des Innenabstandes Oben-Rechts-Unten-Links  */	
+    	padding: 15px 0px 15px 30px;  	 /*Definition des Innenabstandes Oben-Rechts-Unten-Links  */	
     }
 div#sidebarrechts {
     	float: right; 
     	width: 200px; 
     	height: 560px;
     	background: #FFEFD5; 
-    	padding: 15px 0px 15px 15px;  /*Definition des Innenabstandes Oben-Rechts-Unten-Links  */
+    	padding: 15px 0px 15px 30px;  	/*Definition des Innenabstandes Oben-Rechts-Unten-Links  */
     }
 div#mitte { 
-		align: center;
-		width: 700px; 					/*Definition des Inahltbereiches (Breite) */			
+		text-align: center;
+		width: 550px; 					/*Definition des Inahltbereiches (Breite) */			
 		height: 570px;					/*Definition des Inahltbereiches (Breite) 570 */
-    	margin: auto 300px; 
-    	padding: 10px 10px; 
+ 		margin: 20px 0px 0px 230px;		/*Außenabstand:  Oben Rechts Unten Links*/
+    	padding: 10px 0px; 
     }
-div#wrapper {							/* Zentrierung der ganzen Seite mit einer grösse von 1024 px */
-		background-color: lightblue;	/* background-color ist solange lightblue bis was anders definiert wird */
-		width: 1024px;
-		margin: 10px auto;
-	}   
 div#userinfo {
-		background-color: #00A0F1;	/* background-color ist solange lightblue bis was anders definiert wird */
+		background-color: #00A0F1;		/* background-color ist solange lightblue bis was anders definiert wird */
 		margin: 10px 10px 10px 10px;    /* Außenabstand */
 	} 
 div#sidebarlinksuser {
-    	float: left; 
-    	width: 200px; 
-    	height: 560px;
-    	background: #FFEFD5; 
-    	padding: 15px 0px 15px 30px;	
+    	float: left; 					/* Ausrichtung linksbündig */
+    	width: 200px; 					/* Breite in pixel */
+    	height: 560px;					/* höhe in pixel */
+    	background: #FFEFD5; 			/* background-color */
+    	padding: 15px 0px 15px 30px;	/* Innenabstände */
     }
 div#userevents {
 	background-color: #00A0F1;
 	width: 420px; 					/*Definition des Inahltbereiches (Breite) */			
 	height: 150px;
-}
+	}
+div#bottombox {
+	background-color: #ACDFE6;
+	width: 570px; 					/*Definition des Inahltbereiches (Breite) */			
+	height: auto;
+	margin: 209px 0px 0px 0px;
+	padding: 2px 0px;
+	}

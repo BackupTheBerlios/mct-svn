@@ -1,15 +1,8 @@
 <?php
   // login.php
-  
-  // ==================================================================
-  // Login des Anwenders. 
-  // To do: prüfen der Userid gegen Usertabelle, verwenden der Userid für 
-  //        Kommunikation mit der Datenbank etc.
-  // ==================================================================
   // ----------- ist der Benutzer bereits angemeldet? -----------
   if (IsLoggedIn() == true) {	 						// ja, bereits angemeldet
-  }
-  
+  } 
   else {
       // Das Login Formular muss erst angezeit werden ...	
       echo '<form method=post action="userhome.php">  

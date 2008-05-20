@@ -7,7 +7,7 @@
  */
  include "vars_calendar.php";
 	 /////////////////////////////////////////////
-	//Print the calendar css code
+	//Css - mit den definierten Kalendar Variablen
 	//
   echo "
 		<style type=\"text/css\">
