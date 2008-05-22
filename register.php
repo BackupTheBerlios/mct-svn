@@ -64,6 +64,7 @@ include "functionsClasses.php";
   	echo "
 <html>
 	<head><title>Registrierung</title></head>
+	<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\" />
 	<script language=\"JavaScript\">
 <!--
 function checkInput() 

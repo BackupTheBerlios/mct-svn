@@ -5,7 +5,9 @@
   // prüfen ob Passwort und user name eingebebn wurd und obs richtig ist
   if (isset($_POST["userpass"]) and isset($_POST["username"]) and 
      $_POST["username"]!="") {
-     $name = $_POST["username"];
+     session_register("username");				 // Userid in Session speichern
+     $_SESSION['username'] = $_POST["username"]; 
+     $name = $_SESSION['username'];
      UserDBConnect();
      if(UserDBCheck_user($_POST["username"],$_POST["userpass"]) == true) {
 			//Beim ersten Pageload sind nur die schon vorhandne Events zum anzeigen
@@ -17,11 +19,11 @@
 				newEvent($POST["beschreibung"],$POST["jahr"],$POST["monat"],$POST["tag"],$_POST["zeit"]);
 			}
 			else{
-				inOrdnung($name);
+				include "home_box.php";
 			}
      }
    	 else {
-			Error();
+			include "error_box.php";
      }
     }
    else{

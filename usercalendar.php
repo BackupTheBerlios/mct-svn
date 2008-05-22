@@ -3,8 +3,14 @@
 	
 	/////////////////////////////////////////////
 	//Load the language into usable variables
-
-	$language_file  = "Language/calendar." . $calendar_language;	    //Language file into variable
+	
+	if(isset($_SESSION["sprache"]) and $_SESSION["sprache"]!="")
+	{
+		$language_file  = "Language/calendar.".$_SESSION["sprache"];//Language file into variable
+	}
+	else {
+		$language_file  = "Language/calendar.ger";
+	}
 	$fd             = fopen( $language_file, "r" );             
 	$fd             = fread( $fd, filesize( $language_file ) ); //Read the opened file
 	$language_array = explode( "\n" , $fd );                    //Put file info into array 

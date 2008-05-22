@@ -13,6 +13,7 @@
    		$calendar_language = implode($_GET[posi]);
    		session_register("sprache");				 // Passwort in Session speichern
       	$_SESSION['sprache'] = $calendar_language;   //Sprach file in der Session gespeichert -für Persöhnlichen Kalendar
+      	//echo $_SESSION['sprache'];  	
    	}
  ?>
  <html>

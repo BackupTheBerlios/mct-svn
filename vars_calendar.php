@@ -38,8 +38,8 @@
 	$event_font_size          = 22;          //Font-size in pixels
 	$event_font_style         = "normal";    //Set to italic or normal
 	$event_font_weight        = "bold";      //Set to bold or normal
-  	$event_popup_width        = "250";       //Width  of the popup for the events
-  	$event_popup_height       = "350";       //Height of the popup for the events
+  	$event_popup_width        = "550";       //Width  of the popup for the events
+  	$event_popup_height       = "550";       //Height of the popup for the events
 	
 	$head_background_color    = "#DDDDDD";   //Background color of the column
 	$head_font_color          = "green";   //The font color
